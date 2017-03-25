@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>造轮子</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .container{
+            position: relative;
+            width: 500px;
+            height: 500px;
+            background-color: white;
+            border: 2px solid gainsboro;
+            margin: 0 auto;
+        }
+
+        .cube{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <section class="container" id="container">
+    </section>
+    <input type="button" value="开始" id="start">
+    <script>
+
+        var start = document.getElementById("start");
+        var container = document.getElementById("container");
+        var colors = ["salmon","yellow","darkseagreen","darkturquoise"];
+        var numbers = [0,1,4,2,3,4,1,0,2,4,3,3];
+
+
+        //启动游戏
+        var first = function(){
+            for(var i = 0;i<1;i++){
+                    var div = document.createElement('div');
+                    var distanceX = numbers[Math.floor(Math.random()*11)] * 100;
+                    div.className = "cube";
+                    div.style.left = distanceX + "px";
+                    div.style.top = distanceX + "px";
+                    if(container.children.length == 5)
+                    {
+                        div.style.backgroundColor = "transparent"
+                    }else{
+                        div.style.backgroundColor = colors[Math.floor(Math.random()*3)];
+                    }
+                    move();
+                    container.appendChild(div);
+                    if(isArriveBottom()){gameOver();}
+            }
+        };
+
+        var one = function(){
+            gameFirst = setInterval("first()",1000);
+        };
+
+        start.addEventListener("click",one,false);
+
+        //判断方块是否到达底部
+        function isArriveBottom(){
+            var sum = container.children.length;
+            if(sum == 6){
+                var j = sum;
+                if(j == 6){
+                    alert('Game Over');
+                }
+                return true;
+            }
+        }
+
+        //游戏结束
+        function gameOver(){
+            clearInterval(gameFirst);
+            while(container.hasChildNodes()){
+                container.removeChild(container.firstChild);
+            }
+
+            return true;
+        }
+
+        //消灭方块
+        function killCube(){
+            container.onclick(function(){
+
+            })
+        }
+
+        //移动方块
+        function move(){
+            var speed = 2;
+        }
+
+        //加速器
+        function speedUp(){}
+
+        //分数器
+        function scoreCout(){}
+    </script>
+</body>
+</html>
