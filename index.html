@@ -42,6 +42,11 @@
 
         .black {
             background: black;}
+
+
+        #con{
+            border: 2px solid red;
+        }
     </style>
 </head>
 <body>
@@ -51,28 +56,36 @@
 <div id="main">
     <div id="con"></div>
 </div>
+<input type="button" value="开始游戏" id="start">
 </body>
 <script>
     var clock = null;
     var state = 0;
     var speed = 4;
 
+
+
+
+
+
     /*
      *    初始化 init
      */
+
     function init(){
         for(var i=0; i<4; i++){
-            createrow();
+            createrow();   //创建四行
         }
 
         // 添加onclick事件
         $('main').onclick = function(ev){
             judge(ev);
-        }
+        };
 
         // 定时器 每30毫秒调用一次move()
         clock = window.setInterval('move()', 30);
     }
+
 
     // 判断是否点击黑块
     function judge(ev){
@@ -90,7 +103,14 @@
     // 游戏结束
     function fail(){
         clearInterval(clock);
+        var main = $('main');
+        var con = $('con');
+        main.removeChild(con);
         confirm('你的最终得分为 ' + parseInt($('score').innerHTML) );
+
+        var div = document.createElement('div');
+        div.setAttribute("id",'con');
+        main.appendChild(div);
     }
 
     // 创建div, className是其类名
@@ -181,6 +201,19 @@
         }
     }
 
-    init();
+    function start() {
+        init();
+    }
+
+
+    var car = $('start');
+//    car.addEventListener("click", start);
+//    car.addEventListener("click", start, once);
+
+    car.onclick = function () {
+        init();
+    }
+
+//    init();
 </script>
 </html>
