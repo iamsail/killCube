@@ -45,7 +45,7 @@ div{
     }
 
     .cell{
-        width:calc(100% /4 - 10px /4) ;
+        width:calc(100% /4 - 4px /4) ;
     }
 
 }
