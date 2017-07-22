@@ -15,9 +15,6 @@ div{
 #main {
     width: 400px;
     height: 400px;
-
-    /*width: 30vw;*/
-    /*height: 30vw;*/
     background: white;
     border: 2px solid gray;
     margin: 0 auto;
@@ -30,7 +27,8 @@ div{
     height: 400px;
     position: relative;
     top: -100px;
-    border-collapse:collapse;}
+    border-collapse:collapse;
+}
 
 .row{
     height: 100px;
@@ -41,12 +39,19 @@ div{
     width: 100px;
     float: left;}
 
+@media screen and (max-width: 639px) {
+    #main{
+        width: 100%;
+    }
+
+    .cell{
+        width:calc(100% /4 - 10px /4) ;
+    }
+
+}
+
 .black {
-    background: black;}
-
-
-#con{
-    /*border: 2px solid red;*/
+    background: black;
 }
 
 
@@ -65,3 +70,4 @@ h2{
 #start{
     display: inline-block;
 }
+
