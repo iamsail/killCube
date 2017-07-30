@@ -1,6 +1,31 @@
+require('./style.css');
+require('./test.styl');
 var clock = null;
-var state = 0;
 var speed = 4;
+
+// 让黑块动起来
+function move(){
+    var con = $('con');
+    var top = parseInt(window.getComputedStyle(con, null)['top']);
+
+    if(speed + top > 0){
+        top = 0;
+    }else{
+        top += speed;
+    }
+    con.style.top = top + 'px';
+
+    if(top === 0){
+        createrow();
+        con.style.top = '-100px';
+        delrow();
+    }else if(top === (-100 + speed)){
+        var rows = con.childNodes;
+        if((rows.length === 5) && (rows[rows.length-1].pass !== 1) ){
+            fail();
+        }
+    }
+}
 
 
 /*
@@ -21,16 +46,19 @@ function init(){
 
 
     // 定时器 每30毫秒调用一次move()
-    clock = window.setInterval('move()', 30);
+    // clock = window.setInterval("move()", 30);
+    clock = window.setInterval(function () {
+        move();
+    }, 30);
 }
 
 
 // 判断是否点击黑块
 function judge(ev){
-    if(ev.target.className.indexOf('black') == -1){
+    if(ev.target.className.indexOf('black') === -1){
         // ev.target.className = 'cell red';
         // fail();
-        pass;
+        // pass;
     }else{
         ev.target.className = 'cell';
         ev.target.parentNode.pass = 1; //定义属性pass，表明此行row的黑块已经被点击
@@ -73,7 +101,7 @@ function createrow(){
         row.appendChild(creatediv(arr[i])); //添加row的子节点 cell
     }
 
-    if(con.firstChild == null){
+    if(con.firstChild === null){
         con.appendChild(row);
     }else{
         con.insertBefore(row, con.firstChild);
@@ -93,34 +121,11 @@ function creatcell(){
     return temp;
 }
 
-//让黑块动起来
-function move(){
-    var con = $('con');
-    var top = parseInt(window.getComputedStyle(con, null)['top']);
-
-    if(speed + top > 0){
-        top = 0;
-    }else{
-        top += speed;
-    }
-    con.style.top = top + 'px';
-
-    if(top == 0){
-        createrow();
-        con.style.top = '-100px';
-        delrow();
-    }else if(top == (-100 + speed)){
-        var rows = con.childNodes;
-        if((rows.length == 5) && (rows[rows.length-1].pass !== 1) ){
-            fail();
-        }
-    }
-}
 
 // 加速函数
 function speedup(){
     speed += 2;
-    if(speed == 20){
+    if(speed === 20){
         alert('你超神了');
     }
 }
@@ -128,7 +133,7 @@ function speedup(){
 //删除某行
 function delrow(){
     var con = $('con');
-    if(con.childNodes.length == 6) {
+    if(con.childNodes.length === 6) {
         con.removeChild(con.lastChild);
     }
 }
@@ -137,7 +142,7 @@ function delrow(){
 function score(){
     var newscore = parseInt($('score').innerHTML) + 1;
     $('score').innerHTML = newscore;
-    if(newscore % 10 == 0){
+    if(newscore % 10 === 0){
         speedup();
     }
 }
@@ -153,6 +158,6 @@ var car = $('start');
 
 car.onclick = function () {
     init();
-}
+};
 
 //    init();
