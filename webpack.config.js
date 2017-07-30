@@ -28,8 +28,9 @@ module.exports = {
             {
                 test: /\.css$/,
                 loader: 'style-loader!css-loader!postcss-loader'//添加对样式表的处理
-                // loader: 'style-loader!css-loader!postcss-loader!stylus-loader'//添加对样式表的处理
-                //loader: ['style-loader','css-loader','postcss-loader']//添加对样式表的处理
+            },
+            { test: /\.styl$/,
+                loader: 'style-loader!css-loader!stylus-loader'
             }
         ]
     },
