@@ -9,7 +9,7 @@
 
 - 已发布v1.0.0,见分支[v1.0](https://github.com/iamsail/killCube/tree/v1.0)
 - 陆续优化
-    * ES重构中
+    * ES6重构中
     * 游戏加入音效
 
 ## **项目地址**
