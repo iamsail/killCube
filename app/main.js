@@ -1,6 +1,31 @@
+require('./style.css');
 var clock = null;
-var state = 0;
 var speed = 4;
+
+// 让黑块动起来
+function move(){
+    var con = $('con');
+    var top = parseInt(window.getComputedStyle(con, null)['top']);
+
+    if(speed + top > 0){
+        top = 0;
+    }else{
+        top += speed;
+    }
+    con.style.top = top + 'px';
+
+    if(top == 0){
+        createrow();
+        con.style.top = '-100px';
+        delrow();
+    }else if(top == (-100 + speed)){
+        var rows = con.childNodes;
+        if((rows.length == 5) && (rows[rows.length-1].pass !== 1) ){
+            fail();
+        }
+    }
+}
+
 
 
 /*
@@ -21,7 +46,10 @@ function init(){
 
 
     // 定时器 每30毫秒调用一次move()
-    clock = window.setInterval('move()', 30);
+    // clock = window.setInterval("move()", 30);
+    clock = window.setInterval(function () {
+        move();
+    }, 30);
 }
 
 
@@ -30,7 +58,7 @@ function judge(ev){
     if(ev.target.className.indexOf('black') == -1){
         // ev.target.className = 'cell red';
         // fail();
-        pass;
+        // pass;
     }else{
         ev.target.className = 'cell';
         ev.target.parentNode.pass = 1; //定义属性pass，表明此行row的黑块已经被点击
@@ -93,29 +121,6 @@ function creatcell(){
     return temp;
 }
 
-//让黑块动起来
-function move(){
-    var con = $('con');
-    var top = parseInt(window.getComputedStyle(con, null)['top']);
-
-    if(speed + top > 0){
-        top = 0;
-    }else{
-        top += speed;
-    }
-    con.style.top = top + 'px';
-
-    if(top == 0){
-        createrow();
-        con.style.top = '-100px';
-        delrow();
-    }else if(top == (-100 + speed)){
-        var rows = con.childNodes;
-        if((rows.length == 5) && (rows[rows.length-1].pass !== 1) ){
-            fail();
-        }
-    }
-}
 
 // 加速函数
 function speedup(){
@@ -153,6 +158,6 @@ var car = $('start');
 
 car.onclick = function () {
     init();
-}
+};
 
 //    init();
