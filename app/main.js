@@ -1,13 +1,10 @@
 require('./style.css');
-require('./test.styl');
 var clock = null;
 var speed = 4;
-
 // 让黑块动起来
 function move(){
     var con = $('con');
     var top = parseInt(window.getComputedStyle(con, null)['top']);
-
     if(speed + top > 0){
         top = 0;
     }else{
@@ -126,7 +123,7 @@ function creatcell(){
 function speedup(){
     speed += 2;
     if(speed === 20){
-        alert('你超神了');
+        window.alert('你超神了');
     }
 }
 
@@ -147,9 +144,6 @@ function score(){
     }
 }
 
-function start() {
-    init();
-}
 
 
 var car = $('start');
