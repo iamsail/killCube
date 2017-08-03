@@ -13,7 +13,7 @@
 - 项目改为了yarn
 - 增加了ESLint规范代码
 
-## ** 项目演示 **
+## **项目演示**
 
 [手机玩更有趣哦](http://www.sail.name/killCube/)
 
