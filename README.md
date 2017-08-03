@@ -5,17 +5,21 @@
 
 ***********************
 
-## **进度**
+## **About**
 
-- 已发布v1.0.0,见分支[v1.0](https://github.com/iamsail/killCube/tree/v1.0)
-- 陆续优化
-    * ES6重构中
-    * 游戏加入音效
+- 本分支是第二个版本,即v2.0.0
+- 在[v1.0.0](https://github.com/iamsail/killCube/tree/v1.0.0)基础上使用了ES6重写
+- 为游戏增加了音效
+- 项目改为了yarn
+- 增加了ESLint规范代码
 
-## **项目地址**
-- [手机端打开更好玩](http://www.sail.name/killCube/)
+## ** 项目演示 **
 
-## **功能**
+[手机玩更有趣哦](http://www.sail.name/killCube/)
 
-消除白块 <br>
-适配手机
+
+## **待优化**
+
+加载速度,尤其是首次加载速度待优化
+
+
