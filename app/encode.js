@@ -9,7 +9,7 @@ let file = 'notes.json';
 };
 fs.readdir('.', function(error, files) {
     let content = "";
-    files.forEach((f, index) => {
+    files.forEach((f) => {
         if(/^\d/.test(f)) {
             let data = base64Encode(f);
             content += `"${data}",\n`;
