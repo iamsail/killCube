@@ -18,6 +18,10 @@ module.exports = {
         "camelcase" : 2,
         "no-var": 2,
         "eqeqeq" : 2
+    },
+
+    parserOptions: {
+    "sourceType": "module",
     }
 };
 

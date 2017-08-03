@@ -1,4 +1,5 @@
 require('./style.css');
+import {music} from './music.js';
 
 // 根据id来get DOM元素
 const $ = (id) =>{return document.getElementById(id)};
@@ -55,6 +56,9 @@ killCube.judge = (ev) => {
         // fail();
         // pass;
     }else{
+        let songsIndex = killCube.score.innerHTML % 44;
+        let audio  = new Audio('data:audio/mpeg;base64,' + music[songsIndex]);
+        audio.play();
         ev.target.className = 'cell';
         ev.target.parentNode.pass = 1; //定义属性pass，表明此行row的黑块已经被点击
         killCube.scoreAdd();
@@ -113,9 +117,6 @@ killCube.createCell = () =>{
 // 加速函数
 killCube.speedUp = () =>{
     killCube.speed += 2;
-    if(killCube.speed === 20){
-        window.alert('你超神了');
-    }
 };
 
 // 删除行
