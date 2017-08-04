@@ -62,16 +62,12 @@ const config = {
             }
         }),
         new ExtractTextPlugin("styles.css"),
-        // new UglifyJSPlugin({
-        //     minimize: true,
-        //     compress:true
-        // })
-        new webpack.optimize.UglifyJsPlugin({
-            minimize: true,
-            compress: {
-                warnings: false,
-            },
-        }),
+        new UglifyJSPlugin({
+           compress:{
+               warnings:true
+           }
+        })
+
     ]
 };
 
