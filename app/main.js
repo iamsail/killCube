@@ -46,8 +46,6 @@ killCube.init = () => {
     // 添加onclick事件
     $('main').onclick = (ev) =>{ killCube.judge(ev) };
 
-
-
     killCube.clock =  requestAnimationFrame(function moveALL() {
         killCube.move();
         if(killCube.flag === true){
