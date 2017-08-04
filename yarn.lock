@@ -1013,6 +1013,10 @@ combined-stream@^1.0.5, combined-stream@~1.0.5:
   dependencies:
     delayed-stream "~1.0.0"
 
+commander@~2.11.0:
+  version "2.11.0"
+  resolved "http://r.cnpmjs.org/commander/download/commander-2.11.0.tgz#157152fd1e7a6c8d98a5b715cf376df928004563"
+
 commondir@^1.0.1:
   version "1.0.1"
   resolved "http://r.cnpmjs.org/commondir/download/commondir-1.0.1.tgz#ddd800da0c66127393cca5950ea968a3aaf1253b"
@@ -4219,6 +4223,13 @@ type-is@~1.6.15:
 typedarray@^0.0.6:
   version "0.0.6"
   resolved "http://r.cnpmjs.org/typedarray/download/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
+
+"uglify-es@git://github.com/mishoo/UglifyJS2#harmony":
+  version "3.0.27"
+  resolved "git://github.com/mishoo/UglifyJS2#2ed3f8db4482025446999461aab5a6ea36c9896a"
+  dependencies:
+    commander "~2.11.0"
+    source-map "~0.5.1"
 
 uglify-js@^2.8.29:
   version "2.8.29"
