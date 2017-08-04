@@ -1,22 +1,23 @@
 /**
  * Created by sail on 2017/7/29.
  */
-let path = require('path');
-let webpack = require('webpack');
-let autoprefixer = require('autoprefixer');
-let ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const config = {
-    devtool: 'eval-source-map',//配置生成Source Maps,选择合适的选项
+    // devtool: 'eval-source-map',//配置生成Source Maps,选择合适的选项
+    devtool: 'false',//生产环境使用,压缩文件体积更小
     entry:  __dirname + "/app/main.js",//已多次提及的唯一入口文件
     output: {
-        path: __dirname + "/public",//打包后的文件存放的地方
+        path: path.resolve(__dirname, 'public'),//打包后的文件存放的地方
         filename: "bundle.js"//打包后输出文件的文件名
     },
     module: {//在配置文件里添加JSON loader
-        loaders: [
+        rules: [
             {
                 test: /\.json$/,
-                loader: "json-loader"
+                use: "json-loader"
             },
             {
                 test: /\.js$/,
@@ -28,29 +29,40 @@ const config = {
             },
             {
                 test: /\.css$/,
-                loader: 'style-loader!css-loader!postcss-loader'//添加对样式表的处理
+                use: ExtractTextPlugin.extract({
+                fallback: "style-loader",
+                use: ["css-loader","postcss-loader"]
+            })
+                // use: ["style-loader",    "css-loader","postcss-loader"]
             },
-            { test: /\.styl$/,
-                loader: 'style-loader!css-loader!stylus-loader'
+            {   test: /\.styl$/,
+                use: ["style-loader","css-loader","stylus-loader"]
             }
         ]
+    },
+    devServer: {
+        contentBase: path.join(__dirname, "public"),
+        compress: true,
+        open: true,
+        inline:true,
+        port: 8080,
+        historyApiFallback: true,
+        overlay: {
+            warnings: true,
+            errors: true
+        }
     },
     plugins: [
         new webpack.LoaderOptionsPlugin({
             options: {
                 postcss: function () {
                     return [precss, autoprefixer];
-                },
-                devServer: {
-                    contentBase: "./app/public", //本地服务器所加载的页面所在的目录
-                    port: "8080",
-                    colors: true, //终端中输出结果为彩色
-                    historyApiFallback: true, //不跳转
-                    inline: true //实时刷新
                 }
             }
-        })
+        }),
+        new ExtractTextPlugin("styles.css")
     ]
 };
 
 module.exports = config;
+
