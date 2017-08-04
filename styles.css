@@ -1,0 +1,73 @@
+#score{
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+div{
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+}
+
+#main {
+    width: 400px;
+    height: 400px;
+    background: white;
+    border: 2px solid gray;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+#con {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    top: -100px;
+    border-collapse:collapse;
+}
+
+.row{
+    height: 100px;
+    width: 100%;}
+
+.cell{
+    height: 100px;
+    width: 100px;
+    float: left;}
+
+@media screen and (max-width: 639px) {
+    #main{
+        width: 100%;
+    }
+
+    .cell{
+        width:calc(100% /4 - 4px /4) ;
+    }
+
+}
+
+.black {
+    background: black;
+}
+
+
+aside{
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+h2{
+    display: inline-block;
+}
+
+#start{
+    display: inline-block;
+}
+
