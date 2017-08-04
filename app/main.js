@@ -6,9 +6,10 @@ const $ = (id) =>{return document.getElementById(id)};
 
 let killCube = {
     clock : null,
-    speed : 4,
+    speed : 2,
     start : $('start'),
-    score : $('score')
+    score : $('score'),
+    flag  : false
 };
 
 // 让黑块动起来
@@ -30,13 +31,14 @@ killCube.move = () => {
         }
     }
 };
-
+//
 /*
  *    初始化 init
  */
 killCube.init = () => {
+    killCube.flag = true;
     killCube.score.innerHTML = 0;
-    killCube.speed = 4;
+    killCube.speed = 2;
     for(let i=0; i<4; i++){
         killCube.createRow();
     }
@@ -44,9 +46,14 @@ killCube.init = () => {
     // 添加onclick事件
     $('main').onclick = (ev) =>{ killCube.judge(ev) };
 
-    // 定时器 每30毫秒调用一次killCube.move()
-    // 这里是不是可以generator 进行异步编程重写
-    killCube.clock = window.setInterval( () => {killCube.move()}, 30);
+
+
+    killCube.clock =  requestAnimationFrame(function moveALL() {
+        killCube.move();
+        if(killCube.flag === true){
+            killCube.clock = requestAnimationFrame(moveALL);
+        }
+    });
 };
 
 // 判断是否点击黑块
@@ -67,7 +74,8 @@ killCube.judge = (ev) => {
 
 // 游戏结束
 killCube.fail = () => {
-    clearInterval(killCube.clock);
+    killCube.flag = false;
+    cancelAnimationFrame(killCube.clock);
     let main = $('main'),
         con = $('con');
     main.removeChild(con);
@@ -116,7 +124,7 @@ killCube.createCell = () =>{
 
 // 加速函数
 killCube.speedUp = () =>{
-    killCube.speed += 2;
+    killCube.speed += .6;
 };
 
 // 删除行
