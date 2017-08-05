@@ -7,8 +7,8 @@ const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const config = {
-    // devtool: 'eval-source-map',//配置生成Source Maps,选择合适的选项
-    devtool: 'false',//生产环境使用,bundle文件体积更小
+    devtool: 'eval-source-map',//配置生成Source Maps,选择合适的选项
+    // devtool: 'false',//生产环境使用,bundle文件体积更小
     entry:  __dirname + "/app/main.js",//已多次提及的唯一入口文件
     output: {
         path: path.resolve(__dirname, 'public'),//打包后的文件存放的地方
@@ -25,7 +25,7 @@ const config = {
                 exclude: /node_modules/,
                 loader: "babel-loader",
                 query: {
-                    presets: ['es2015']
+                    presets: ['es2015','es2016']
                 }
             },
             {
@@ -70,6 +70,10 @@ const config = {
 
     ]
 };
+
+if (process.env.NODE_ENV === 'production') {
+    config.devtool = 'false';
+}
 
 module.exports = config;
 
