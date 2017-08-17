@@ -6,6 +6,7 @@ const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const config = {
     devtool: 'eval-source-map',//配置生成Source Maps,选择合适的选项
     // devtool: 'false',//生产环境使用,bundle文件体积更小
@@ -64,10 +65,13 @@ const config = {
         new ExtractTextPlugin("styles.css"),
         new UglifyJSPlugin({
            compress:{
-               warnings:true
-           }
-        })
-
+               warnings: false,
+               drop_console: true,
+               pure_funcs: ['console.log']
+           },
+            sourceMap: false
+        }),
+        new BundleAnalyzerPlugin()
     ]
 };
 

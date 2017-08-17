@@ -28,6 +28,7 @@ killCube.move = () => {
         let rows = con.childNodes;
         if((rows.length === 5) && (rows[rows.length-1].pass !== 1) ){
             killCube.fail();
+
         }
     }
 };
@@ -39,6 +40,7 @@ killCube.init = () => {
     killCube.flag = true;
     killCube.score.innerHTML = 0;
     killCube.speed = 2;
+    killCube.start.style.display = "none";
     for(let i=0; i<4; i++){
         killCube.createRow();
     }
@@ -73,6 +75,7 @@ killCube.judge = (ev) => {
 // 游戏结束
 killCube.fail = () => {
     killCube.flag = false;
+    killCube.start.style.display = "inline-block";
     cancelAnimationFrame(killCube.clock);
     let main = $('main'),
         con = $('con');

@@ -6,7 +6,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --inline --content-base public/ --history-api-fallback",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "lint": "eslint app/*.js "
+    "lint": "eslint app/*.js ",
+    "analyz": "cross-env NODE_ENV=production npm_config_report=true npm run build"
   },
   "repository": "git@github.com:iamsail/killCube.git",
   "author": "iamsail <865605793@qq.com>",
@@ -31,6 +32,7 @@
     "cross-env": "^5.0.3",
     "extract-text-webpack-plugin": "^3.0.0",
     "uglify-es": "git://github.com/mishoo/UglifyJS2#harmony",
-    "uglifyjs-webpack-plugin": "^0.4.6"
+    "uglifyjs-webpack-plugin": "^0.4.6",
+    "webpack-bundle-analyzer": "^2.9.0"
   }
 }
